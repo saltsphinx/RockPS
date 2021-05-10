@@ -9,7 +9,7 @@
         gameMaster()
 
         function gameMaster() {
-            let userChoice = prompt('A game of Rock Paper Scissors, best of three! Make your choice...')
+            let userChoice = prompt('A game of Rock Paper Scissors, best of five! Make your choice...')
             if (userChoice.toUpperCase() === "ROCK" || userChoice.toUpperCase() === "PAPER" || userChoice.toUpperCase() === "SCISSORS") {
                 decisionMaker(userChoice.toUpperCase(), computerPlay())
             } else {
@@ -35,7 +35,7 @@
 
         function roundHandler(winner, finish) {
             winner === "USER" ? userWins++ : computerWins++;
-            if (userWins === 3 || computerWins === 3) {
+            if (userWins === 5 || computerWins === 5) {
                 alert(`Game over! ${winner} wins! User: ${userWins}, Computer: ${computerWins}.`);
                 restartMatch();
             } else {
