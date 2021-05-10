@@ -1,0 +1,60 @@
+<head>
+    <title>Game Master</title>
+</head>
+
+<body>
+    <script>
+        let userWins = 0;
+        let computerWins = 0;
+        gameMaster()
+
+        function gameMaster() {
+            let userChoice = prompt('A game of Rock Paper Scissors... Make your choice.')
+            if (userChoice.toUpperCase() === "ROCK" || userChoice.toUpperCase() === "PAPER" || userChoice.toUpperCase() === "SCISSORS") {
+                decisionMaker(userChoice.toUpperCase(), computerPlay())
+            } else {
+                gameMaster();
+            }
+        }
+
+        function decisionMaker(userChoice, computerChoice) {
+            userChoice == "ROCK" && computerChoice == "SCISSORS" ? roundHandler("USER") :
+            userChoice == "PAPER" && computerChoice == "ROCK" ? roundHandler("USER") :
+            userChoice == "SCISSORS" && computerChoice == "PAPER" ? roundHandler("USER") :
+            userChoice == "SCISSORS" && computerChoice == "ROCK" ? roundHandler("COMPUTER") :
+            userChoice == "PAPER" && computerChoice == "SCISSORS" ? roundHandler("COMPUTER") :
+            userChoice == "ROCK" && computerChoice == "PAPER" ? roundHandler("COMPUTER") :
+            roundDraw(userChoice, computerChoice);
+        }
+
+        function computerPlay() {
+            let computerChoice = ["ROCK", "PAPER", "SCISSORS"];
+            let randomChoice = Math.floor(Math.random() * computerChoice.length);
+            return computerChoice[randomChoice];
+        }
+
+        function roundHandler(winner, finish) {
+            winner === "USER" ? userWins++ : computerWins++;
+            if (userWins === 3 || computerWins === 3) {
+                alert(`Game over! ${winner} wins! User: ${userWins}, Computer: ${computerWins}.`);
+                restartMatch();
+            } else {
+                alert(`${winner} wins this round! User: ${userWins}, Computer: ${computerWins}.`);
+                gameMaster();
+            }
+        }
+
+        function roundDraw(userChoice, computerChoice) {
+            alert(`Round draw! User: ${userWins}, Computer: ${computerWins}.`);
+            gameMaster();
+        }
+
+        function restartMatch() {
+            if (confirm("Would you like to play again")) {
+                userWins = 0;
+                computerWins = 0;
+                gameMaster();
+            }
+        }
+    </script>
+</body>
